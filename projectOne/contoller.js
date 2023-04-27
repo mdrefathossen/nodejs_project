@@ -1,7 +1,7 @@
 const Contact = require('./Contact')
 
 exports.getAllContact = (req,res) =>  {
-    res.send('<h1> Check controler</h1>')
+    res.send('<h1> Check v controler</h1>')
 
 }
 exports.getSingleContact = () => {
