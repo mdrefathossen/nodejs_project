@@ -55,29 +55,54 @@ exports.getCreateContact = (req, res) => {
                 })
             })
     }
-    
-    
-    let contact = new Contact({
-        name,
-        email,
-        phone
-        
-    })
-
-    contact.save()
-        .then(c => {
+    if(id){
+        Contact.findOneAndUpdate(
+            {_id : id},
+            {
+                $set: {
+                    name,phone,email
+                }
+            }
+        ).then(() => {
             Contact.find()
                 .then(contacts => {
-                    return res.render('index',{contacts,error: {}})
+                    res.render('index',{contacts,error: {}})
                 })
-            
-        })
-        .catch(e => {
+        }).catch(e => {
             console.log(e)
             return res.json({
                 message: "error occurred"
             })
         })
+
+    }else{
+        let contact = new Contact({
+            name,
+            email,
+            phone
+            
+        })
+    
+        contact.save()
+            .then(c => {
+                Contact.find()
+                    .then(contacts => {
+                        return res.render('index',{contacts,error: {}})
+                    })
+                
+            })
+            .catch(e => {
+                console.log(e)
+                return res.json({
+                    message: "error occurred"
+                })
+            })
+
+    }
+    
+    
+   
+
 }
 
 exports.updateContact = (req, res) => {
