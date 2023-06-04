@@ -36,7 +36,7 @@ app.get('/', (req, res) => {
 const PORT = process.env.port || 8080;
 const password = process.env.refatneww
 mongoose
-    .connect(`mongodb+srv://refatnew:refatneww@cluster0.ahw56ah.mongodb.net/?retryWrites=true&w=majority`)
+    .connect(`mongodb+srv://refatnew:dbpass@cluster0.ahw56ah.mongodb.net/?retryWrites=true&w=majority`)
     .then(() => {
         app.listen(PORT, () => {
             console.log(`Server is Running on Port ${PORT}`)
